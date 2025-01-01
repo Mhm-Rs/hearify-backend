@@ -30,9 +30,9 @@ public class PlaylistController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{playlistId}/tracks")
-    public ResponseEntity<Void> removeTrackFromPlaylist(@PathVariable Integer playlistId, @RequestBody TrackManipulationDto trackManipulationDto) {
-        playlistService.removeTrackFromPlaylist(playlistId, trackManipulationDto.trackId());
+    @DeleteMapping("/{playlistId}/tracks/{trackId}")
+    public ResponseEntity<Void> removeTrackFromPlaylist(@PathVariable Integer playlistId, @PathVariable Integer trackId) {
+        playlistService.removeTrackFromPlaylist(playlistId, trackId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
