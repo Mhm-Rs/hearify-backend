@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/api/playlists")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @Tag(name = "Playlist")
 public class PlaylistController {

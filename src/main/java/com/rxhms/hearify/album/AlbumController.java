@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api/albums")
+@CrossOrigin(origins = "*")
 @Tag(name = "Album")
 @RequiredArgsConstructor
 public class AlbumController {
