@@ -18,17 +18,16 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Track")
 public class TrackController {
 
-    private final TrackService trackService;
-    private final TrackMapper trackMapper;
+  private final TrackService trackService;
+  private final TrackMapper trackMapper;
 
-    private static final String TRACK_RETRIEVED = "Track retrieved";
+  private static final String TRACK_RETRIEVED = "Track retrieved";
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Retrieve a track by its id")
-    @ApiResponse(responseCode = "200", description = TRACK_RETRIEVED)
-    @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<TrackDto> getTrackById(@PathVariable Integer id) {
-        return ResponseEntity.ok(trackMapper.toTrackDto(trackService.getTrackById(id)));
-    }
-
+  @GetMapping("/{id}")
+  @Operation(summary = "Retrieve a track by its id")
+  @ApiResponse(responseCode = "200", description = TRACK_RETRIEVED)
+  @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<TrackDto> getTrackById(@PathVariable Integer id) {
+    return ResponseEntity.ok(trackMapper.toTrackDto(trackService.getTrackById(id)));
+  }
 }

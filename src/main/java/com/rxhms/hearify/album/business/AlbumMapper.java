@@ -2,11 +2,9 @@ package com.rxhms.hearify.album.business;
 
 import com.rxhms.hearify.album.dto.AlbumDto;
 import com.rxhms.hearify.artist.business.ArtistMapper;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor

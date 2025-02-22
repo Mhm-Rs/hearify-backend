@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,19 +20,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Track {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    private String title;
-    private int duration;
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
-    @ManyToOne
-    @JoinColumn(name = "album_id")
-    private Album album;
-    @ManyToMany(mappedBy = "tracks")
-    private List<Playlist> playlists = new ArrayList<>();
-    private LocalDateTime createdAt;
+  private String title;
+  private int duration;
+
+  @ManyToOne
+  @JoinColumn(name = "artist_id")
+  private Artist artist;
+
+  @ManyToOne
+  @JoinColumn(name = "album_id")
+  private Album album;
+
+  @ManyToMany(mappedBy = "tracks")
+  private List<Playlist> playlists = new ArrayList<>();
+
+  private LocalDateTime createdAt;
 }

@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class HearifyApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HearifyApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(HearifyApplication.class, args);
+  }
 }

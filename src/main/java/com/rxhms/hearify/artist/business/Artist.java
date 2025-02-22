@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Artist {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    private String name;
-    private String bio;
-    private String coverImage;
-    private LocalDateTime createdAt;
+  private String name;
+  private String bio;
+  private String coverImage;
+  private LocalDateTime createdAt;
 }

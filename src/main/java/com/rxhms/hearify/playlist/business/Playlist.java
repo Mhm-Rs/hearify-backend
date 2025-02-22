@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,23 +19,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Playlist {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    private String name;
+  private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 
-    @ManyToMany
-    @JoinTable(
-            name = "playlist_tracks",
-            joinColumns = @JoinColumn(name = "playlist_id"),
-            inverseJoinColumns = @JoinColumn(name = "track_id")
-    )
-    private List<Track> tracks = new ArrayList<>();
+  @ManyToMany
+  @JoinTable(
+      name = "playlist_tracks",
+      joinColumns = @JoinColumn(name = "playlist_id"),
+      inverseJoinColumns = @JoinColumn(name = "track_id"))
+  private List<Track> tracks = new ArrayList<>();
 
-    private LocalDateTime createdAt;
+  private LocalDateTime createdAt;
 }

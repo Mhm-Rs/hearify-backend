@@ -2,7 +2,6 @@ package com.rxhms.hearify.album.business;
 
 import com.rxhms.hearify.artist.business.Artist;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -28,6 +27,7 @@ public class Album {
   @ManyToOne
   @JoinColumn(name = "artist_id")
   private Artist artist;
+
   private String coverImage;
   private LocalDateTime createdAt;
 }

@@ -16,16 +16,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Favorite {
 
-    @EmbeddedId
-    private FavoriteId id;
+  @EmbeddedId private FavoriteId id;
 
-    @ManyToOne
-    @MapsId("user")
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+  @ManyToOne
+  @MapsId("user")
+  @JoinColumn(name = "user_id", referencedColumnName = "id")
+  private User user;
 
-    @ManyToOne
-    @MapsId("track")
-    @JoinColumn(name = "track_id", referencedColumnName = "id")
-    private Track track;
+  @ManyToOne
+  @MapsId("track")
+  @JoinColumn(name = "track_id", referencedColumnName = "id")
+  private Track track;
 }

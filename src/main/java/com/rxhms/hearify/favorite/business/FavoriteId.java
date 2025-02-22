@@ -12,6 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FavoriteId {
-    private Integer user_id;
-    private Integer track_id;
+  private Integer user_id;
+  private Integer track_id;
 }
