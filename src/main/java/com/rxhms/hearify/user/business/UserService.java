@@ -18,6 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
     private static final String NOT_FOUND_MESSAGE = "The user with id {0} could not be found.";
 private static final String ALREADY_EXISTING_EMAIL_MESSAGE = "An user with the email {0} already exists.";
+private static final String NOT_AUTHENTICATED_MESSAGE = "The provided username or password is invalid.";
     private final PlaylistRepository playlistRepository;
 
     public User getUserById(Integer id) {
@@ -43,5 +44,9 @@ private static final String ALREADY_EXISTING_EMAIL_MESSAGE = "An user with the e
     public List<Playlist> getUserPlaylists(final Integer userId) {
         final User user = getUserById(userId);
         return playlistRepository.findPlaylistsByUserId(user.getId());
+    }
+
+    public User authenticateUser(UserAuthentication userAuthentication) {
+        return userRepository.findByUsernameAndPasswordHash(userAuthentication.username(), userAuthentication.passwordHash()).orElseThrow(() -> new HearifyNotFoundException(NOT_AUTHENTICATED_MESSAGE));
     }
 }

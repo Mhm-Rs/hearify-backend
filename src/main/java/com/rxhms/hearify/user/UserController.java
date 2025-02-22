@@ -9,6 +9,7 @@ import com.rxhms.hearify.playlist.dto.PlaylistDto;
 import com.rxhms.hearify.track.dto.TrackManipulationDto;
 import com.rxhms.hearify.user.business.UserMapper;
 import com.rxhms.hearify.user.business.UserService;
+import com.rxhms.hearify.user.dto.UserAuthenticationDto;
 import com.rxhms.hearify.user.dto.UserCreationDto;
 import com.rxhms.hearify.user.dto.UserDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,6 +37,7 @@ public class UserController {
     private final PlaylistMapper playlistMapper;
 
     private static final String USER_RETRIEVED = "User retrieved successfully";
+    private static final String USER_AUTHENTICATED = "User authenticated successfully";
     private static final String USER_CREATED = "User created successfully";
     private static final String USER_DELETED = "User deleted successfully";
     private static final String PLAYLISTS_RETRIEVED = "Playlists retrieved successfully";
@@ -59,6 +61,15 @@ public class UserController {
         userService.createUser(userMapper.fromUserCreationDto(userCreationDto));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PostMapping("/auth")
+    @Operation(summary = "Authenticate user and returns their data")
+    @ApiResponse(responseCode = "200", description = USER_AUTHENTICATED)
+    @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<UserDto> authenticateUser(@Validated @RequestBody UserAuthenticationDto userAuthenticationDto) {
+        return ResponseEntity.ok(userMapper.toUserDto(userService.authenticateUser(userMapper.fromUserAuthenticationDto(userAuthenticationDto))));
+    }
+
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Find user by id and delete")

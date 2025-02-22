@@ -27,6 +27,7 @@ public class User {
     private String username;
     private String email;
     private String passwordHash;
+    private String profilePic;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Favorite> favorites = new ArrayList<>();
