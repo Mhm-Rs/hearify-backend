@@ -15,6 +15,8 @@ public class UserMapper {
         .username(user.getUsername())
         .email(user.getEmail())
         .profilePic(user.getProfilePic())
+        .followers(user.getFollowers())
+        .following(user.getFollowing())
         .build();
   }
 

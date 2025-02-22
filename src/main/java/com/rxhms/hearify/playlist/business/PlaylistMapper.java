@@ -2,6 +2,7 @@ package com.rxhms.hearify.playlist.business;
 
 import com.rxhms.hearify.playlist.dto.PlaylistCreationDto;
 import com.rxhms.hearify.playlist.dto.PlaylistDto;
+import com.rxhms.hearify.playlist.dto.PlaylistSimplifiedDto;
 import com.rxhms.hearify.track.business.TrackMapper;
 import com.rxhms.hearify.user.business.UserMapper;
 import com.rxhms.hearify.user.business.UserService;
@@ -24,11 +25,33 @@ public class PlaylistMapper {
         .name(playlist.getName())
         .user(userMapper.toUserDto(playlist.getUser()))
         .tracks(trackMapper.toTrackDtoList(playlist.getTracks()))
+        .cover(playlist.getCover())
         .build();
   }
 
-  public List<PlaylistDto> toPlaylistDtoList(List<Playlist> playlists) {
-    return playlists.stream().map(this::toPlaylistDto).toList();
+  public PlaylistSimplifiedDto toPlaylistSimplifiedDto(PlaylistSimplified playlist) {
+    return PlaylistSimplifiedDto.builder()
+        .id(playlist.id())
+        .name(playlist.name())
+        .userId(playlist.userId())
+        .playlistCover(playlist.playlistCover())
+        .build();
+  }
+
+  public PlaylistSimplified toPlaylistSimplified(Playlist playlist) {
+    return PlaylistSimplified.builder()
+        .id(playlist.getId())
+        .name(playlist.getName())
+        .userId(String.valueOf(playlist.getUser().getId()))
+        .playlistCover(playlist.getCover())
+        .build();
+  }
+
+  public List<PlaylistSimplifiedDto> toPlaylistSimplifiedDtoList(List<Playlist> playlists) {
+    return playlists.stream()
+        .map(this::toPlaylistSimplified)
+        .map(this::toPlaylistSimplifiedDto)
+        .toList();
   }
 
   public Playlist fromPlaylistCreationDto(PlaylistCreationDto playlistCreationDto) {

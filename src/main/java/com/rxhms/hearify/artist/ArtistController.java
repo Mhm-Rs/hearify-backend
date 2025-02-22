@@ -43,4 +43,12 @@ public class ArtistController {
   public ResponseEntity<List<AlbumDto>> getAlbumsByArtistId(@PathVariable Integer id) {
     return ResponseEntity.ok(albumMapper.toAlbumDtoList(artistService.getAlbumsByArtist(id)));
   }
+
+  @GetMapping("/random")
+  @Operation(summary = "Retrieve a constant number of random artists")
+  @ApiResponse(responseCode = "200", description = ARTIST_RETRIEVED)
+  @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<List<ArtistDto>> getRandomArtists() {
+    return ResponseEntity.ok(artistMapper.toArtistDtoList(artistService.getRandomArtists()));
+  }
 }

@@ -5,7 +5,7 @@ import com.rxhms.hearify.favorite.business.FavoriteMapper;
 import com.rxhms.hearify.favorite.business.FavoriteService;
 import com.rxhms.hearify.favorite.dto.FavoriteDto;
 import com.rxhms.hearify.playlist.business.PlaylistMapper;
-import com.rxhms.hearify.playlist.dto.PlaylistDto;
+import com.rxhms.hearify.playlist.dto.PlaylistSimplifiedDto;
 import com.rxhms.hearify.track.dto.TrackManipulationDto;
 import com.rxhms.hearify.user.business.UserMapper;
 import com.rxhms.hearify.user.business.UserService;
@@ -86,8 +86,9 @@ public class UserController {
   @Operation(summary = "Retrieve all playlists of a user")
   @ApiResponse(responseCode = "200", description = PLAYLISTS_RETRIEVED)
   @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
-  public ResponseEntity<List<PlaylistDto>> getUserPlaylists(@PathVariable Integer id) {
-    return ResponseEntity.ok(playlistMapper.toPlaylistDtoList(userService.getUserPlaylists(id)));
+  public ResponseEntity<List<PlaylistSimplifiedDto>> getUserPlaylists(@PathVariable Integer id) {
+    return ResponseEntity.ok(
+        playlistMapper.toPlaylistSimplifiedDtoList(userService.getUserPlaylists(id)));
   }
 
   @GetMapping("/{id}/favorites")

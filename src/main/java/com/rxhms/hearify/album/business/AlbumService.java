@@ -25,4 +25,12 @@ public class AlbumService {
   public List<Track> getAlbumTracks(Integer albumId) {
     return trackRepository.findTracksByAlbumId(albumId);
   }
+
+  public List<Album> getAllAlbums() {
+    return albumRepository.findAll();
+  }
+
+  public List<Album> getRandomAlbums() {
+    return albumRepository.findRandomAlbums();
+  }
 }

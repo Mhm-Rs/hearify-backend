@@ -7,6 +7,7 @@ import com.rxhms.hearify.track.dto.TrackDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,13 @@ public class TrackController {
   @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
   public ResponseEntity<TrackDto> getTrackById(@PathVariable Integer id) {
     return ResponseEntity.ok(trackMapper.toTrackDto(trackService.getTrackById(id)));
+  }
+
+  @GetMapping("/random")
+  @Operation(summary = "Retrieve a constant number of random tracks")
+  @ApiResponse(responseCode = "200", description = TRACK_RETRIEVED)
+  @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<List<TrackDto>> getRandomTracks() {
+    return ResponseEntity.ok(trackMapper.toTrackDtoList(trackService.getRandomTracks()));
   }
 }

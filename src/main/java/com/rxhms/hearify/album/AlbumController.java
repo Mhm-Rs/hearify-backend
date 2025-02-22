@@ -3,6 +3,7 @@ package com.rxhms.hearify.album;
 import com.rxhms.hearify.album.business.AlbumMapper;
 import com.rxhms.hearify.album.business.AlbumService;
 import com.rxhms.hearify.album.dto.AlbumDto;
+import com.rxhms.hearify.album.dto.AlbumSimplifiedDto;
 import com.rxhms.hearify.constants.HearifyConstants;
 import com.rxhms.hearify.track.business.TrackMapper;
 import com.rxhms.hearify.track.dto.TrackDto;
@@ -26,7 +27,16 @@ public class AlbumController {
   private final TrackMapper trackMapper;
 
   private static final String ALBUM_RETRIEVED = "Album retrieved";
+  private static final String ALBUMS_SIMPLIFIED_RETRIEVED = "Albums simplified retrieved";
   private static final String ALBUM_TRACKS_RETRIEVED = "Album tracks retrieved";
+
+  @GetMapping()
+  @Operation(summary = "Retrieve all albums simplified")
+  @ApiResponse(responseCode = "200", description = ALBUMS_SIMPLIFIED_RETRIEVED)
+  @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<List<AlbumSimplifiedDto>> getAllAlbumsSimplified() {
+    return ResponseEntity.ok(albumMapper.toAlbumSimplifiedDtoList(albumService.getAllAlbums()));
+  }
 
   @GetMapping("/{id}")
   @Operation(summary = "Retrieve an album by its id")
@@ -42,5 +52,13 @@ public class AlbumController {
   @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
   public ResponseEntity<List<TrackDto>> getAlbumTracks(@PathVariable Integer id) {
     return ResponseEntity.ok(trackMapper.toTrackDtoList(albumService.getAlbumTracks(id)));
+  }
+
+  @GetMapping("/random")
+  @Operation(summary = "Retrieve a constant number of random albums")
+  @ApiResponse(responseCode = "200", description = ALBUMS_SIMPLIFIED_RETRIEVED)
+  @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<List<AlbumSimplifiedDto>> getRandomAlbumsSimplified() {
+    return ResponseEntity.ok(albumMapper.toAlbumSimplifiedDtoList(albumService.getRandomAlbums()));
   }
 }

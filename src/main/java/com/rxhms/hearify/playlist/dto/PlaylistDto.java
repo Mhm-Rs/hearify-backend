@@ -6,4 +6,5 @@ import java.util.List;
 import lombok.Builder;
 
 @Builder
-public record PlaylistDto(Integer id, String name, UserDto user, List<TrackDto> tracks) {}
+public record PlaylistDto(
+    Integer id, String name, UserDto user, List<TrackDto> tracks, String cover) {}

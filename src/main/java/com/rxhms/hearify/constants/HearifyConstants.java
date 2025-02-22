@@ -6,4 +6,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class HearifyConstants {
   public static final String INTERNAL_SERVER_ERROR = "Internal server error";
+  public static final int RANDOM_SIZE = 3;
 }

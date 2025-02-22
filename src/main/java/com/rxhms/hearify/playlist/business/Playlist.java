@@ -25,6 +25,8 @@ public class Playlist {
 
   private String name;
 
+  private String cover;
+
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;

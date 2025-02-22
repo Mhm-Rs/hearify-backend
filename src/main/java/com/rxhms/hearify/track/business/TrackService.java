@@ -2,6 +2,7 @@ package com.rxhms.hearify.track.business;
 
 import com.rxhms.hearify.exception.HearifyNotFoundException;
 import com.rxhms.hearify.track.repository.TrackRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,9 @@ public class TrackService {
     return trackRepository
         .findById(id)
         .orElseThrow(() -> new HearifyNotFoundException(NOT_FOUND_MESSAGE, id));
+  }
+
+  public List<Track> getRandomTracks() {
+    return trackRepository.findRandomTracks();
   }
 }

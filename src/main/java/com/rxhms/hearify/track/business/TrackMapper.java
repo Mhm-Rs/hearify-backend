@@ -1,10 +1,9 @@
 package com.rxhms.hearify.track.business;
 
-import com.rxhms.hearify.album.business.AlbumMapper;
 import com.rxhms.hearify.artist.business.ArtistMapper;
 import com.rxhms.hearify.track.dto.TrackDto;
+import com.rxhms.hearify.track.dto.TrackForAlbumDto;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TrackMapper {
 
-  private final AlbumMapper albumMapper;
   private final ArtistMapper artistMapper;
 
   public TrackDto toTrackDto(Track track) {
@@ -20,12 +18,24 @@ public class TrackMapper {
         .id(track.getId())
         .title(track.getTitle())
         .duration(track.getDuration())
-        .album(albumMapper.toAlbumDto(track.getAlbum()))
         .artist(artistMapper.toArtistDto(track.getArtist()))
+        .cover(track.getAlbum().getCoverImage())
+        .build();
+  }
+
+  public TrackForAlbumDto toTrackForAlbumDto(Track track) {
+    return TrackForAlbumDto.builder()
+        .id(track.getId())
+        .title(track.getTitle())
+        .duration(track.getDuration())
         .build();
   }
 
   public List<TrackDto> toTrackDtoList(List<Track> tracks) {
-    return tracks.stream().map(this::toTrackDto).collect(Collectors.toList());
+    return tracks.stream().map(this::toTrackDto).toList();
+  }
+
+  public List<TrackForAlbumDto> toTrackForAlbumDtoList(List<Track> tracks) {
+    return tracks.stream().map(this::toTrackForAlbumDto).toList();
   }
 }
