@@ -39,4 +39,12 @@ public class TrackController {
   public ResponseEntity<List<TrackDto>> getRandomTracks() {
     return ResponseEntity.ok(trackMapper.toTrackDtoList(trackService.getRandomTracks()));
   }
+
+  @GetMapping("/search")
+  @Operation(summary = "Retrieve a list of tracks based on a search query")
+  @ApiResponse(responseCode = "200", description = TRACK_RETRIEVED)
+  @ApiResponse(responseCode = "500", description = HearifyConstants.INTERNAL_SERVER_ERROR)
+  public ResponseEntity<List<TrackDto>> searchTracks(@RequestParam String query) {
+    return ResponseEntity.ok(trackMapper.toTrackDtoList(trackService.searchTracks(query)));
+  }
 }

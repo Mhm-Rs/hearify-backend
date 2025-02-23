@@ -22,4 +22,8 @@ public class TrackService {
   public List<Track> getRandomTracks() {
     return trackRepository.findRandomTracks();
   }
+
+  public List<Track> searchTracks(String query) {
+    return trackRepository.findTracksByTitleContainsIgnoreCaseOrAlbumNameContainsIgnoreCase(query, query).orElse(null);
+  }
 }
