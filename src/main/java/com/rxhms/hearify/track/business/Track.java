@@ -39,4 +39,6 @@ public class Track {
   private List<Playlist> playlists = new ArrayList<>();
 
   private LocalDateTime createdAt;
+
+  private String trackPlayUrl;
 }

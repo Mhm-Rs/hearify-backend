@@ -4,4 +4,4 @@ import com.rxhms.hearify.artist.dto.ArtistDto;
 import lombok.Builder;
 
 @Builder
-public record TrackDto(Integer id, String title, int duration, ArtistDto artist, String cover) {}
+public record TrackDto(Integer id, String title, int duration, ArtistDto artist, String cover, String trackPlayUrl) {}

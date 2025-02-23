@@ -20,6 +20,7 @@ public class TrackMapper {
         .duration(track.getDuration())
         .artist(artistMapper.toArtistDto(track.getArtist()))
         .cover(track.getAlbum().getCoverImage())
+            .trackPlayUrl(track.getTrackPlayUrl())
         .build();
   }
 
@@ -28,6 +29,7 @@ public class TrackMapper {
         .id(track.getId())
         .title(track.getTitle())
         .duration(track.getDuration())
+            .trackPlayUrl(track.getTrackPlayUrl())
         .build();
   }
 
