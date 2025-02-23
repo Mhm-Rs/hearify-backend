@@ -14,7 +14,7 @@ public class AlbumService {
 
   private final AlbumRepository albumRepository;
   private final TrackRepository trackRepository;
-  private static final String NOT_FOUND_MESSAGE = "The artist with id {0} could not be found.";
+  private static final String NOT_FOUND_MESSAGE = "The album with id {0} could not be found.";
 
   public Album getAlbumById(Integer id) {
     return albumRepository

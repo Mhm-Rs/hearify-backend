@@ -8,6 +8,8 @@ import com.rxhms.hearify.track.business.TrackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static com.rxhms.hearify.constants.HearifyConstants.DEFAULT_ALBUM_COVER;
+
 @Service
 @RequiredArgsConstructor
 public class PlaylistService {
@@ -62,6 +64,7 @@ public class PlaylistService {
     if (playlistRepository.existsByNameAndUserId(playlist.getName(), playlist.getUser().getId())) {
       throw new HearifyBadRequestException(ALREADY_EXISTING_PLAYLIST_MESSAGE, playlist.getName());
     } else {
+      playlist.setCover(DEFAULT_ALBUM_COVER);
       playlistRepository.save(playlist);
     }
   }
