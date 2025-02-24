@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_hearify
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hearifydb
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./sql/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build: .
+    container_name: hearify_backend
+    restart: always
+    ports:
+      - "5001:5000"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/hearifydb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root

@@ -2,9 +2,9 @@ spring:
   application:
     name: hearify
   datasource:
-    url: jdbc:mysql://mysql-1718f0b2-hearify.f.aivencloud.com:15539/defaultdb
-    username: avnadmin
-    password: ${DATABASE_PASSWORD}
+    url: jdbc:mysql://mysql:3306/hearifydb
+    username: root
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
